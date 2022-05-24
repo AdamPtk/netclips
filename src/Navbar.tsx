@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
-import { Avatar } from '@mui/material';
+import { Avatar, Grid } from '@mui/material';
+import { Box, Container } from '@mui/system';
+import { useEffect, useState } from 'react';
 import Logo from './Logo';
 
 const Nav = styled('div')({
@@ -15,11 +17,41 @@ const Nav = styled('div')({
 });
 
 function Navbar() {
+  const [bg, setBg] = useState<Boolean>(false);
+
+  const bgTransition = () => {
+    if (window.scrollY > 100) {
+      setBg(true);
+    } else {
+      setBg(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', bgTransition);
+    return () => window.removeEventListener('scroll', bgTransition);
+  }, []);
+
   return (
-    <Nav>
-      <Logo />
-      <Avatar />
-    </Nav>
+    <Grid
+      container
+      p={3}
+      justifyContent="space-between"
+      alignItems="center"
+      position="fixed"
+      zIndex={9999}
+      bgcolor={`${bg ? '#000' : 'transparent'}`}
+      style={{
+        transition: 'all 0.5s',
+      }}
+    >
+      <Grid item>
+        <Logo />
+      </Grid>
+      <Grid item>
+        <Avatar />
+      </Grid>
+    </Grid>
   );
 }
 
