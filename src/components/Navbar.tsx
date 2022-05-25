@@ -1,20 +1,7 @@
-import styled from '@emotion/styled';
-import { Avatar, Grid } from '@mui/material';
-import { Box, Container } from '@mui/system';
 import { useEffect, useState } from 'react';
-import Logo from './Logo';
-
-const Nav = styled('div')({
-  position: 'fixed',
-  top: 0,
-  right: 0,
-  left: 0,
-  zIndex: 9999,
-  display: 'flex',
-  justifyContent: 'space-between',
-  padding: '20px 50px',
-  backgroundColor: '#000',
-});
+import { Avatar, Grid } from '@mui/material';
+import Logo from './atoms/Logo';
+import { defaultTheme } from '../themes/defaultTheme';
 
 function Navbar() {
   const [bg, setBg] = useState<Boolean>(false);
@@ -35,13 +22,16 @@ function Navbar() {
   return (
     <Grid
       container
-      p={3}
+      py={2}
+      px={6}
       justifyContent="space-between"
       alignItems="center"
       position="fixed"
       zIndex={9999}
-      bgcolor={`${bg ? '#000' : 'transparent'}`}
-      style={{
+      bgcolor={`${bg && defaultTheme.palette.background.paper}`}
+      sx={{
+        backgroundImage:
+          'linear-gradient(to bottom,rgba(0,0,0,.7) 10%,rgba(0,0,0,0))',
         transition: 'all 0.5s',
       }}
     >

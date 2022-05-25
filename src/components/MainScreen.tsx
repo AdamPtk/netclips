@@ -1,4 +1,5 @@
 import Banner from './Banner';
+import List from './List';
 import Navbar from './Navbar';
 
 function MainScreen() {
@@ -6,6 +7,7 @@ function MainScreen() {
     <div>
       <Navbar />
       <Banner />
+      <List />
     </div>
   );
 }
