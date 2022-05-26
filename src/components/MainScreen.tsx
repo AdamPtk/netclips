@@ -19,8 +19,8 @@ function MainScreen() {
   return (
     <div>
       <Navbar />
-      <Banner />
-      <MediaList mediaListId={2} title="Selected for you" />
+      <Banner mediaListId={3} />
+      <MediaList mediaListId={3} title="Selected for you" />
       <MediaList mediaListId={6} title="Trending now" />
       <MediaList mediaListId={4} title="Only on Netlclips" />
       <Footer />

@@ -10,6 +10,7 @@ export interface ImageData {
 export interface MediaData {
   readonly Id: number;
   readonly Title: string;
+  readonly Description?: string;
   readonly Images: ImageData[];
 }
 
