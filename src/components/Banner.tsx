@@ -28,7 +28,7 @@ function Banner() {
         </Typography>
         <Grid container spacing={2} py={2}>
           <Grid item>
-            <Button variant="contained" size="large">
+            <Button variant="contained" color="secondary" size="large">
               <PlayArrowIcon />
               <Typography color={'black'} sx={{ px: 1 }}>
                 Play
@@ -36,7 +36,7 @@ function Banner() {
             </Button>
           </Grid>
           <Grid item>
-            <Button variant="contained" color="secondary" size="large">
+            <Button variant="contained" color="info" size="large">
               <InfoOutlinedIcon />
               <Typography sx={{ px: 1 }}>More informations</Typography>
             </Button>

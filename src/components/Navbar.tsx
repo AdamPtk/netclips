@@ -36,7 +36,7 @@ function Navbar() {
       }}
     >
       <Grid item>
-        <Logo />
+        <Logo width="100px" />
       </Grid>
       <Grid item>
         <Avatar />
