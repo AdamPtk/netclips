@@ -16,7 +16,11 @@ export const authorization = () => {
   return {
     async anonymousLogin(body: {}): Promise<UserData> {
       return await axios
-        .post<UserData>('Authorization/SignIn', body)
+        .post<UserData>('Authorization/SignIn', body, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
         .then((res) => res.data);
     },
     async userLogin(body: {
@@ -24,7 +28,11 @@ export const authorization = () => {
       Password: string;
     }): Promise<UserData> {
       return await axios
-        .post<UserData>('Authorization/SignIn', body)
+        .post<UserData>('Authorization/SignIn', body, {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
         .then((res) => res.data);
     },
   };

@@ -1,5 +1,6 @@
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 import { useFormik } from 'formik';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { authorization } from '../api/authorization';
@@ -21,7 +22,6 @@ const textFieldStyles = {
 };
 
 const validationSchema = Yup.object({
-  name: Yup.string().required('Name is required'),
   email: Yup.string()
     .email('Enter a valid email')
     .required('Email is required'),
@@ -32,6 +32,15 @@ const validationSchema = Yup.object({
 
 function SplashScreen() {
   const navigate = useNavigate();
+  const token = window.sessionStorage.getItem('token');
+
+  useEffect(() => {
+    if (token) {
+      navigate('/home');
+    } else {
+      navigate('/');
+    }
+  }, [navigate]);
 
   const formik = useFormik({
     initialValues: {
@@ -52,7 +61,6 @@ function SplashScreen() {
               'token',
               data.AuthorizationToken.Token,
             );
-            console.log(data);
           });
       } catch (error: any) {
         console.log(error.response.data.Message);
@@ -67,7 +75,6 @@ function SplashScreen() {
         .then((data) => {
           window.sessionStorage.setItem('token', data.AuthorizationToken.Token);
           navigate('/home');
-          console.log(data);
         });
     } catch (error: any) {
       console.log(error.response.data.Message);
