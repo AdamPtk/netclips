@@ -40,6 +40,7 @@
 
 ## To add:
 
+- More precise error handling
 - Registration
 - RWD
 - Tests
