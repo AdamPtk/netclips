@@ -20,6 +20,16 @@ export interface MediaListData {
   readonly PageNumber: number;
 }
 
+export interface MediaPlayInfoData {
+  readonly MediaId: number;
+  readonly ContentUrl: string;
+}
+
+export enum StreamTypeOptions {
+  MAIN = 'MAIN',
+  TRIAL = 'TRIAL',
+}
+
 export const media = () => {
   const token = window.sessionStorage.getItem('token');
   return {
@@ -33,6 +43,19 @@ export const media = () => {
     }): Promise<MediaListData> {
       return await axios
         .post<MediaListData>('Media/GetMediaList', body, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => res.data);
+    },
+    async getMediaPlayInfo(body: {
+      MediaId: number;
+      StreamType: StreamTypeOptions;
+    }): Promise<MediaPlayInfoData> {
+      return await axios
+        .post<MediaPlayInfoData>('Media/GetMediaPlayInfo', body, {
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,

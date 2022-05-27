@@ -61,6 +61,8 @@ function SplashScreen() {
               'token',
               data.AuthorizationToken.Token,
             );
+            window.sessionStorage.setItem('fullname', data.User.FullName);
+            console.log(data);
           });
       } catch (error: any) {
         console.log(error.response.data.Message);
@@ -74,7 +76,9 @@ function SplashScreen() {
         .anonymousLogin({})
         .then((data) => {
           window.sessionStorage.setItem('token', data.AuthorizationToken.Token);
+          window.sessionStorage.setItem('fullname', data.User.FullName);
           navigate('/home');
+          console.log(data);
         });
     } catch (error: any) {
       console.log(error.response.data.Message);

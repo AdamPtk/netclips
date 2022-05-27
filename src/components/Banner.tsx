@@ -1,10 +1,10 @@
 import { Box, Button, Grid, Skeleton, Typography } from '@mui/material';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { MediaListElem } from './MediaList';
 import { ImageData, media, MediaData } from '../api/media';
 import { FunctionComponent, useEffect, useState } from 'react';
 import noImage from '../assets/no-image.png';
+import { Link } from 'react-router-dom';
 
 export interface MediaBanner {
   id: number;
@@ -129,12 +129,17 @@ const Banner: FunctionComponent<{ mediaListId: number }> = ({
           <Grid container spacing={2} py={2}>
             <Grid item>
               {banner ? (
-                <Button variant="contained" color="secondary" size="large">
-                  <PlayArrowIcon />
-                  <Typography color={'black'} sx={{ px: 1 }}>
-                    Play
-                  </Typography>
-                </Button>
+                <Link
+                  to={`/home/${banner.id}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <Button variant="contained" color="secondary" size="large">
+                    <PlayArrowIcon />
+                    <Typography color={'black'} sx={{ px: 1 }}>
+                      Play
+                    </Typography>
+                  </Button>
+                </Link>
               ) : (
                 <Skeleton
                   sx={{ backgroundColor: 'rgba(255, 255, 255, 0.11)' }}

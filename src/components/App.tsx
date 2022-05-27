@@ -4,6 +4,7 @@ import { defaultTheme } from '../themes/defaultTheme';
 import MainScreen from './MainScreen';
 import SplashScreen from './SplashScreen';
 import NotFound from './NotFound';
+import Player from './Player';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SplashScreen />} />
           <Route path="/home" element={<MainScreen />} />
+          <Route path="/home/:mediaId" element={<Player />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ThemeProvider>

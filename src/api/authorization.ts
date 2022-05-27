@@ -35,5 +35,8 @@ export const authorization = () => {
         })
         .then((res) => res.data);
     },
+    logout() {
+      window.sessionStorage.removeItem('token');
+    },
   };
 };

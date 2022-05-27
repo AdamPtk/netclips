@@ -1,11 +1,14 @@
 import { Grid, Skeleton, Typography } from '@mui/material';
-import { Box, Container } from '@mui/system';
+import { Box } from '@mui/system';
 import { FunctionComponent, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { media, ImageData, MediaData } from '../api/media';
 import noImage from '../assets/no-image.png';
 
 const listStyle = {
   overflow: 'auto',
+  alignItems: 'center',
+  flexWrap: 'nowrap',
   '&::-webkit-scrollbar': {
     height: '5px',
   },
@@ -74,7 +77,6 @@ const MediaList: FunctionComponent<MediaListProps> = ({
         })
         .then((data) => {
           setMediaList(mediaListElements(data.Entities));
-          console.log(data);
         });
     } catch (error: any) {
       console.log(error.response.data.Message);
@@ -118,24 +120,26 @@ const MediaList: FunctionComponent<MediaListProps> = ({
       <Typography variant="h5" fontWeight={600} py={1}>
         {title}
       </Typography>
-      <Grid container spacing={1} py={1} wrap="nowrap" sx={listStyle}>
+      <Grid container spacing={1} py={1} sx={listStyle}>
         {mediaList.length !== 0 ? (
           mediaList.map((elem) => (
             <Grid item key={elem.id}>
-              <Box
-                width="208px"
-                height="117px"
-                borderRadius={1}
-                sx={{
-                  backgroundImage: `url(${elem.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                  cursor: 'pointer',
-                }}
-              >
-                <Typography>{elem.title}</Typography>
-              </Box>
+              <Link to={`/home/${elem.id}`} style={{ textDecoration: 'none' }}>
+                <Box
+                  width="208px"
+                  height="117px"
+                  borderRadius={1}
+                  sx={{
+                    backgroundImage: `url(${elem.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Typography>{elem.title}</Typography>
+                </Box>
+              </Link>
             </Grid>
           ))
         ) : (

@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import { Avatar, Grid } from '@mui/material';
+import { Avatar, Button, Grid } from '@mui/material';
 import Logo from './atoms/Logo';
 import { defaultTheme } from '../themes/defaultTheme';
+import { authorization } from '../api/authorization';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
   const [bg, setBg] = useState<Boolean>(false);
+  const navigate = useNavigate();
 
   const bgTransition = () => {
     if (window.scrollY > 100) {
@@ -13,6 +16,13 @@ function Navbar() {
       setBg(false);
     }
   };
+
+  const logout = () => {
+    authorization().logout();
+    navigate('/');
+  };
+
+  const fullName = window.sessionStorage.getItem('fullname');
 
   useEffect(() => {
     window.addEventListener('scroll', bgTransition);
@@ -38,8 +48,15 @@ function Navbar() {
       <Grid item>
         <Logo width="100px" />
       </Grid>
-      <Grid item>
-        <Avatar />
+      <Grid item sx={{ display: 'flex', alignItems: 'center' }}>
+        <Grid p={1} item>
+          <Button variant="contained" size="small" onClick={logout}>
+            Sign Out
+          </Button>
+        </Grid>
+        <Grid item>
+          <Avatar>{fullName && fullName[0]}</Avatar>
+        </Grid>
       </Grid>
     </Grid>
   );
